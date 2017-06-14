@@ -106,6 +106,7 @@ export const fetchAddPost = (user, content, time, replys) => (
         content,
         time,
         replys,
+        replyTo: null,
       }),
     })
       .then(() => dispatch(addPostSuccess(user, content, time, replys)))
@@ -149,6 +150,7 @@ export const fetchAddReply = (user, content, time, replyTo) => (
         content,
         time,
         replyTo,
+        replys: null,
       }),
     })
       .then(() => dispatch(addReplySuccess(user, content, time, replyTo)))
