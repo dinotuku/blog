@@ -1,0 +1,14 @@
+.newPostButton {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 1;
+}
+
+.inputBar {
+  width: 98% !important;
+}
+
+.snackBar {
+  text-align: center;
+}

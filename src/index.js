@@ -1,9 +1,0 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import BlogApp from './js/BlogApp';
-import './index.css';
-
-ReactDOM.render(
-  <BlogApp />,
-  document.getElementById('root'),
-);

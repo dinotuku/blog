@@ -1,26 +1,17 @@
 {
   "name": "blog",
-  "version": "1.0.0",
-  "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack --env=dev",
-    "build:watch": "npm run build -- --watch",
-    "build:prod": "webpack --env=prod"
-  },
-  "dependencies": {
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
-  },
+  "version": "0.1.0",
+  "repository": "https://github.com/dtk0528/blog.git",
+  "author": "Kuan Tung <b03901039@ntu.edu.tw>",
+  "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
-    "babel-preset-latest": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.4",
-    "html-webpack-plugin": "^2.28.0",
-    "style-loader": "^0.18.2",
-    "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "now": "^5.2.3"
   },
-  "license": "MIT"
+  "scripts": {
+    "build": "npm run build:server",
+    "build:client": "cd client && npm install && npm run build",
+    "build:server": "cd server && npm install",
+    "start": "cd server && npm start",
+    "deploy": "npm run build:client && now"
+  }
 }
