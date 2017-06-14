@@ -6,6 +6,7 @@ import { Card, CardHeader } from 'material-ui/Card';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import ShowPost from '../containers/ShowPost';
 
+const Element = Scroll.Element;
 const scroller = Scroll.scroller;
 
 class BlogPosts extends Component {
@@ -32,15 +33,17 @@ class BlogPosts extends Component {
     const time = `${parsedTime.getFullYear()}/${parsedTime.getMonth() + 1}/${parsedTime.getDate()} ${parsedTime.getHours()}:${(`0${parsedTime.getMinutes()}`).slice(-2)}`;
 
     return (
-      <Card
+      <Element
         key={`${item.idx}-post-item`}
         name={`${item.idx}-post-item`}
       >
-        <CardHeader
-          title={<Link to={`/posts/${item.idx}`}>{item.user}</Link>}
-          subtitle={time}
-        />
-      </Card>
+        <Card>
+          <CardHeader
+            title={<Link to={`/posts/${item.idx}`}>{item.user}</Link>}
+            subtitle={time}
+          />
+        </Card>
+      </Element>
     );
   };
 

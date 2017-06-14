@@ -1,11 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const ExtractTextPluginConfig = new ExtractTextPlugin({
-  filename: './static/css/[name].css',
+  filename: 'static/css/[name].[contenthash:8].css',
 });
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './public/index.html',
@@ -26,14 +27,14 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 const FaviconsWebpackPluginConfig = new FaviconsWebpackPlugin({
   logo: './public/logo.png',
-  prefix: './static/icons-[hash]/',
+  prefix: 'static/icons-[hash:8]/',
 });
 
 module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.join(__dirname, 'build'),
-    filename: './static/js/bundle.js',
+    filename: 'static/js/main.[hash:8].js',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -47,7 +48,12 @@ module.exports = {
           use: [
             {
               loader: 'css-loader',
-              options: { module: true },
+              options: {
+                module: true,
+                importLoaders: 1,
+                minimize: true,
+                sourceMap: true,
+              },
             },
           ],
           fallback: 'style-loader',
@@ -61,24 +67,27 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      beautify: false,
-      mangle: {
-        screw_ie8: true,
-        keep_fnames: true,
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
       },
-      compress: {
-        screw_ie8: true,
-      },
-      comments: false,
     }),
+    new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     HtmlWebpackPluginConfig,
     ExtractTextPluginConfig,
     new webpack.LoaderOptionsPlugin({
       minimize: true,
     }),
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json',
+    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     FaviconsWebpackPluginConfig,
   ],
-  devtool: 'eval',
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+  },
 };

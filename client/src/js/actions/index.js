@@ -59,7 +59,8 @@ export const fetchPosts = () => (
         nextPostIdx += (json.length - 1);
         json.map((post) => {
           const tmp = post;
-          if (post.replys !== null) tmp.replys = post.replys.split(',').map(Number);
+          if (post.replys !== null && post.replys !== '') tmp.replys = post.replys.split(',').map(Number);
+          else if (post.replys === '') tmp.replys = [];
           else tmp.replys = undefined;
           if (post.replyTo === null) tmp.replyTo = undefined;
           return tmp;
@@ -106,7 +107,6 @@ export const fetchAddPost = (user, content, time, replys) => (
         content,
         time,
         replys,
-        replyTo: null,
       }),
     })
       .then(() => dispatch(addPostSuccess(user, content, time, replys)))
@@ -150,7 +150,6 @@ export const fetchAddReply = (user, content, time, replyTo) => (
         content,
         time,
         replyTo,
-        replys: null,
       }),
     })
       .then(() => dispatch(addReplySuccess(user, content, time, replyTo)))
