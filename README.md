@@ -1,12 +1,12 @@
 Blog
 =========
-[![Demo](https://camo.githubusercontent.com/d57a88a378dd7ed232931397d903da874daa7809/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64656d6f2d6f6e6c696e652d677265656e2e737667)](https://blog-dtk0528.now.sh)  
+[![Demo](https://camo.githubusercontent.com/d57a88a378dd7ed232931397d903da874daa7809/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f64656d6f2d6f6e6c696e652d677265656e2e737667)](https://blog-dinotuku.now.sh)  
   
 ![UI](public/img/ui.png)
 
 ## Demo
 
-A working live demo [https://blog-dtk0528.now.sh](https://blog-dtk0528.now.sh)
+A working live demo [https://blog-dinotuku.now.sh](https://blog-dinotuku.now.sh)
 
 ## Features
 
@@ -21,7 +21,7 @@ A working live demo [https://blog-dtk0528.now.sh](https://blog-dtk0528.now.sh)
 
 #### Get the source code  
 
-	git clone https://github.com/dtk0528/blog.git
+	git clone https://github.com/dinotuku/blog.git
 	cd blog
 	
 #### Download and install all the dependencies (in server/ and client/)
